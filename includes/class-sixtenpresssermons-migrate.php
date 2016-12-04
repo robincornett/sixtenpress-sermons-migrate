@@ -44,7 +44,9 @@ class SixTenPressSermonsMigrate {
 	public function message() {
 		if ( ! $this->get_old_sermons() ) {
 			update_option( $this->key, 1 );
-			$message = '<p>' . __( 'Sorry, looks like there is nothing to do here.', 'sixtenpress-sermons' ) . '</p>';
+			$message = '<p>' . __( 'Woo hoo! Looks like there is nothing left to do here.', 'sixtenpress-sermons' ) . '</p>';
+			echo '<div class="notice notice-info">' . wp_kses_post( $message );
+			return;
 		} else {
 			$message  = '<p>' . sprintf( __( 'Six/Ten Press Sermons Migration will attempt to migrate your sermons over to Six/Ten Press. This process will modify your database, so please make sure that your site is fully backed up before you do anything else. <strong>Additionally, you\'ll want to use the <a href="%s">Export tool</a> to export all of your Sermons, just in case.</strong>', 'sixtenpress-sermons-migrate' ), esc_url( admin_url() . 'export.php' ) ) . '</p>';
 			$message .= '<p>' . __( 'Before you click the migration button, make sure that both Sermon Manager and Six/Ten Press Sermons are active. Also, please enable all of the Six/Ten taxonomies, even if you are not planning on using them. You can disable the unneeded ones later.', 'sixtenpress-sermons-migrate' ) . '</p>';
