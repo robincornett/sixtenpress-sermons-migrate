@@ -45,11 +45,11 @@ class SixTenPressSermonsMigrate {
 		if ( ! $this->get_old_sermons() ) {
 			update_option( $this->key, 1 );
 			$message = '<p>' . __( 'Woo hoo! Looks like there is nothing left to do here.', 'sixtenpress-sermons' ) . '</p>';
-			echo '<div class="notice notice-info">' . wp_kses_post( $message );
+			echo '<div class="notice notice-info">' . wp_kses_post( $message ) . '</div>';
 			return;
 		} else {
 			$message  = '<p>' . sprintf( __( 'Six/Ten Press Sermons Migration will attempt to migrate your sermons over to Six/Ten Press. This process will modify your database, so please make sure that your site is fully backed up before you do anything else. <strong>Additionally, you\'ll want to use the <a href="%s">Export tool</a> to export all of your Sermons, just in case.</strong>', 'sixtenpress-sermons-migrate' ), esc_url( admin_url() . 'export.php' ) ) . '</p>';
-			$message .= '<p>' . __( 'Before you click the migration button, make sure that both Sermon Manager and Six/Ten Press Sermons are active. Also, please enable all of the Six/Ten taxonomies, even if you are not planning on using them. You can disable the unneeded ones later.', 'sixtenpress-sermons-migrate' ) . '</p>';
+			$message .= '<p>' . sprintf( __( 'Before you click the migration button, make sure that both Sermon Manager and Six/Ten Press Sermons are active. Also, please <a href="%s">enable all of the Six/Ten taxonomies</a>, even if you are not planning on using them. You can disable the unneeded ones later.', 'sixtenpress-sermons-migrate' ), esc_url( admin_url() . 'edit.php?post_type=sermon&page=sixtenpresssermons&tab=taxonomies' ) ) . '</p>';
 			$message .= '<p>' . __( 'You can test the plugin by migrating just one sermon, so you can make sure it worked properly, migrate sermons in batches of 25 at a time, or copy all sermons from one content type to the other.', 'sixtenpress-sermons-migration' ) . '</p>';
 			$message .= '<p>' . sprintf( __( 'What\'s the difference between migrating and copying sermons? Migrating will actually move the existing sermons from Sermon Manager; copying will simply copy them instead. Copying is more resource intensive, since it will go through each and every sermon, but it may be safer because it will leave the originals intact. If you choose to copy sermons, please <a href="%s">visit the Sermon Manager settings page</a> and change your archive slug to something other than sermons.', 'sixtenpress-sermons-migration' ), esc_url( admin_url() . 'edit.php?post_type=wpfc_sermon&page=sermon-manager-for-wordpress%2Fincludes%2Foptions.php' ) ) . '</p>';
 		}
